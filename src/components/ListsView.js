@@ -23,9 +23,9 @@ export default class ListsView extends Component {
     };
   }
   componentDidMount() {
-    var books = tempData;
+    var items = tempData;
     this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(books)
+        dataSource: this.state.dataSource.cloneWithRows(items)
     });
    }
 
@@ -34,6 +34,7 @@ export default class ListsView extends Component {
       <TouchableHighlight>
         <View>
           <LineItem item={ item } />
+          <View style={styles.separator} />
         </View>
       </TouchableHighlight>
     );

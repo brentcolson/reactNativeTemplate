@@ -20,7 +20,7 @@ TabBar and Nav Styles
     },
 
 /*********************************
-ListView Specific Styles
+ListView Styles
 *********************************/
 
   rightContainer: {
@@ -49,5 +49,33 @@ ListView Specific Styles
   separator: {
        height: 1,
        backgroundColor: '#dddddd'
-   }
+  },
+  listView: {
+    backgroundColor: '#F5FCFF'
+  },
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+/*********************************
+ListView Styles
+*********************************/
+
+  detailContainer: {
+    marginTop: 75,
+    alignItems: 'center'
+  },
+  detailImage: {
+    width: 107,
+    height: 165,
+    padding: 10
+  },
+  detailDescription: {
+    padding: 10,
+    fontSize: 15,
+    color: '#656565'
+  }
+
 });

@@ -1,4 +1,4 @@
-import React, { Component } from 'react-native';
+import React, { Component } from 'react';
 import { createStore, applyMiddleware, } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -7,11 +7,11 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers/rootReducer.js';
 import SmartListApp from '../containers/SmartListAppContainer';
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(rootReducer);
-// import configureStore from '../store/configureStore.js'
-//
-// const store = configureStore();
+// const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+// const store = createStoreWithMiddleware(rootReducer);
+import configureStore from '../store/configureStore.js'
+
+const store = configureStore();
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
@@ -36,6 +36,10 @@ const store = createStoreWithMiddleware(rootReducer);
 // }
 
 export default class Root extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <Provider store={store}>

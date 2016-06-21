@@ -15,28 +15,24 @@ export default class SmartListApp extends Component {
   }
 
   render() {
-    const { store } = this.props;
+    const { selected, updateSelected } = this.props
     return (
-      <TabBarIOS selectedTab={state.selectedTab}>
+      <TabBarIOS selectedTab={selected}>
         <TabBarIOS.Item
-            selected={state.selectedTab === 'Search'}
+            selected={selected === 'Search'}
             systemIcon="search"
             onPress={() => {
-//CHANGE THIS TO DISPATCH
-                this.setState({
-                    selectedTab: 'Search'
-                });
+//CHANGE THIS TO DISPATCH ACTION TO SET GLOBAL STATE
+                updateSelected('Search');
             }}>
             <Search/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
-          selected={state.selectedTab === 'Lists'}
+          selected={selected === 'Lists'}
           systemIcon="most-viewed"
           onPress={() => {
 //CHANGE THIS TO DISPATCH
-              this.setState({
-                  selectedTab: 'Lists'
-              });
+            updateSelected('Lists');
           }}>
           <Lists/>
         </TabBarIOS.Item>

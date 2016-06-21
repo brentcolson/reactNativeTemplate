@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     increment: () => {
       dispatch(actions.increment());
+    },
+    updateSelected: (string) => {
+      dispatch(actions.updateSelected(string));
     }
   };
 };

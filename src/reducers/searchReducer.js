@@ -1,11 +1,14 @@
 
-import * as types from '../constants/actionTypes.js';
+import * as types from '../constants/ActionTypes.js';
 
-const initialState = {
-  selectedTab: "add"
-};
+// const initialState = {
+//   selectedTab: "add"
+// };
 
-export default function searchReducer(state = initialState, action = {}) {
+export default (state = {
+  selectedTab: "add",
+  count: 0
+}, action) => {
   switch (action.type) {
     case types.INCREMENT:
       return {

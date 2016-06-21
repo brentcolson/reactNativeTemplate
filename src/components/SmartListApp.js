@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import {
   TabBarIOS
 } from 'react-native';
-import { Provider } from 'react-redux';
 
 //import containers
 import Search from '../containers/Search.js'

@@ -1,35 +1,39 @@
 import React, { Component } from 'react-native';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, } from 'redux';
+import { Provider } from 'react-redux';
+
 import thunk from 'redux-thunk';
 
-import * as reducers from '../reducers';
-import SmartListApp from '../components/SmartListApp';
+import rootReducer from '../reducers/rootReducer.js';
+import SmartListApp from '../containers/SmartListAppContainer';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const reducer = combineReducers(reducers);
-const store = createStoreWithMiddleware(reducer);
+const store = createStoreWithMiddleware(rootReducer);
+// import configureStore from '../store/configureStore.js'
+//
+// const store = configureStore();
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    attemptVerify: () => {
-      console.log('work');
-      let token = window.localStorage.getItem('jwtToken');
-
-      // If there is no token, do nothing
-      if(!token || token === '') {
-        return;
-      }
-      dispatch(actions.attemptVerify(token));
-    }
-  };
-};
-
-function mapStateToProps(state, ownProps) {
-  return {
-    user: state.user,
-    token: state.auth.token
-  };
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     attemptVerify: () => {
+//       console.log('work');
+//       let token = window.localStorage.getItem('jwtToken');
+//
+//       // If there is no token, do nothing
+//       if(!token || token === '') {
+//         return;
+//       }
+//       dispatch(actions.attemptVerify(token));
+//     }
+//   };
+// };
+//
+// function mapStateToProps(state, ownProps) {
+//   return {
+//     user: state.user,
+//     token: state.auth.token
+//   };
+// }
 
 export default class Root extends Component {
   render() {

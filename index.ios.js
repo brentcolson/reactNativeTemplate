@@ -4,13 +4,9 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  TabBarIOS
-} from 'react-native';
+import React, { AppRegistry } from 'react-native';
 
-import Root from './containers/Root.js'
+import Root from './src/containers/Root.js'
 
 
 // //import containers

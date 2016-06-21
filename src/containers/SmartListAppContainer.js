@@ -1,9 +1,9 @@
 
 import React, { Component } from 'react-native';
-import {bindActionCreators} from 'redux';
-import * as counterActions from '../actions/counterActions';
-import { Provider } from 'react-redux';
-import SmartListApp from '.../components/SmartListApp.js'
+import * as actions from '../actions/index.js';
+import SmartListApp from '../components/SmartListApp.js'
+import { connect } from 'react-redux';
+
 
 // @connect(state => ({
 //   state: state.counter
@@ -11,13 +11,16 @@ import SmartListApp from '.../components/SmartListApp.js'
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    increment: () => {
+      dispatch(actions.increment());
     }
   };
 };
 
 function mapStateToProps(state, ownProps) {
   return {
-    selectedTab: state.selectedTab
+    selectedTab: "add",
+    count: 0
   };
 }
 

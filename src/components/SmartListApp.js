@@ -2,87 +2,46 @@
 
 import React, { Component } from 'react';
 import {
-  View,
-  ListView,
-  TouchableHighlight,
-  ActivityIndicatorIOS
+  TabBarIOS
 } from 'react-native';
-import LineItem from './lineItem.js';
-import ItemDetail from './itemDetail.js'
+import { Provider } from 'react-redux';
 
-import styles from '../styles/styles.js'
+//import containers
+import Search from '../containers/Search.js'
+import Lists from '../containers/Lists.js'
 
-var REQUEST_URL = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction';
-
-export default class ListsView extends Component {
-
+export default class SmartListApp extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-       isLoading: true,
-       dataSource: new ListView.DataSource({
-           rowHasChanged: (row1, row2) => row1 !== row2
-       })
-    };
-  }
-  componentDidMount() {
-    this.fetchData();
+      super(props);
   }
 
-  fetchData() {
-      fetch(REQUEST_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(responseData.items),
-            isLoading: false
-        });
-      })
-      .done();
-
-   }
-
-  renderLoadingView() {
+  render() {
+    const { store } = this.props;
     return (
-      <View style={styles.loading}>
-        <ActivityIndicatorIOS
-            size='large'/>
-        <Text>
-          Loading items...
-        </Text>
-      </View>
+      <TabBarIOS selectedTab={state.selectedTab}>
+        <TabBarIOS.Item
+            selected={state.selectedTab === 'Search'}
+            systemIcon="search"
+            onPress={() => {
+//CHANGE THIS TO DISPATCH
+                this.setState({
+                    selectedTab: 'Search'
+                });
+            }}>
+            <Search/>
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          selected={state.selectedTab === 'Lists'}
+          systemIcon="most-viewed"
+          onPress={() => {
+//CHANGE THIS TO DISPATCH
+              this.setState({
+                  selectedTab: 'Lists'
+              });
+          }}>
+          <Lists/>
+        </TabBarIOS.Item>
+      </TabBarIOS>
     );
   }
-
-  renderItem(item) {
-    if(this.state.isLoading) {
-      return this.renderLoadingView
-    }
-    return (
-      <TouchableHighlight onPress={() => this.showItemDetail(item)}  underlayColor='#dddddd'>
-        <View>
-          <LineItem item={ item } />
-          <View style={styles.separator} />
-        </View>
-      </TouchableHighlight>
-    );
-    }
-
-    showItemDetail(item) {
-      this.props.navigator.push({
-        title: item.volumeInfo.title,
-        component: ItemDetail,
-        passProps: {item}
-      });
-    }
-
-   render() {
-     return (
-       <ListView
-           dataSource={this.state.dataSource}
-           renderRow={this.renderItem.bind(this)}
-           style={styles.listView}
-         />
-     );
-   }
 }

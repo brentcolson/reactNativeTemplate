@@ -10,6 +10,7 @@ import {
   TabBarIOS
 } from 'react-native';
 
+import Root from ./containers/Root.js
 //import containers
 import Search from './src/containers/Search.js'
 import Lists from './src/containers/Lists.js'
